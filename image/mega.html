@@ -1,0 +1,93 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Section</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #140018;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .containe {
+  position: relative;
+  width: 350px;
+  height: 500px;
+}
+
+.circle-bg {
+  position: absolute;
+  width: 330px;
+  height: 330px;
+  background: #c400ff;
+  border-radius: 50%;
+  top: 20px;
+  left: 10px;
+  z-index: 1;
+}
+
+.dots-top-left, .dots-bottom-right {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(6, 6px);
+  gap: 6px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background: #7d2cff;
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+.dots-top-left {
+  top: 0;
+  left: 0;
+  transform: translate(-20px, -20px);
+}
+
+.dots-bottom-right {
+  bottom: 0;
+  right: 0;
+  transform: translate(20px, 20px);
+}
+
+.profile-img {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  z-index: 2;
+  filter: brightness(0.95);
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- DOTS LEFT -->
+    <div class="dots-top-left">
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    </div><!-- PURPLE CIRCLE BG -->
+<div class="circle-bg"></div>
+
+<!-- PROFILE IMAGE -->
+<img src="Logo.jpg" alt="Profile" class="profile-img" />
+
+<!-- DOTS RIGHT -->
+<div class="dots-bottom-right">
+  <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+</div>
+
+  </div>
+</body>
+</html>

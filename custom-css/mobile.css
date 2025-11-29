@@ -1,0 +1,39 @@
+@media screen and (max-width: 768px) {
+  .home-content h1 {
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .content {
+    margin-top: 120px;
+  }
+
+  /* Prevent horizontal overflow */
+  .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .button-box {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .button-box a {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .sites a {
+    margin-right: 10px;
+    font-size: 13px;
+  }
+
+  .selected-work {
+    font-size: 16px;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+  }
+}
