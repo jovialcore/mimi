@@ -58,13 +58,18 @@ body {
   }
 }
 
-.mega {
+.footer-nav-mega {
   text-decoration: none;
   color: white;
   transition: 0.7s;
   padding: 0rem 1rem 0.5rem 0rem;
 }
 
+.mega {
+    text-decoration: none;
+  color: white;
+  transition: 0.7s;
+}
 .back {
   margin-left: 5px;
   margin-top: 10px;
