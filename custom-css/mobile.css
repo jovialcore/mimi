@@ -1,8 +1,10 @@
 @media screen and (max-width: 768px) {
-  .home-content h1 {
+  .home-content h1,
+  .revamp h1 {
     font-size: 24px;
     font-weight: 700;
   }
+
 
   .content {
     margin-top: 120px;
@@ -41,4 +43,43 @@
   .footer-links {
     flex-wrap: wrap;
   }
+
+  /* Fix for horizontal scroll caused by fixed min-width */
+  /* .revamp,
+  .date,
+  .kenya,
+  .africa,
+  .blue,
+  .transparent,
+  .seperate {
+    min-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .date {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 10px;
+  }
+
+  .date-text,
+  .date-date {
+    margin-top: 0;
+  }
+
+  .firstdiv,
+  .seconddiv {
+    width: 100%;
+  }
+
+  .seperate {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .blue img,
+  .transparent img {
+    min-width: 100% !important;
+    height: auto !important;
+  } */
 }

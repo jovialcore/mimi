@@ -128,11 +128,12 @@ body {
 .content {
   margin-top: 200px;
   z-index: 10;
-  max-width: 900px;
+width: 100%;
   margin-left: auto;
   margin-right: auto;
   padding-left: 20px;
   padding-right: 20px;
+  border:3px solid red;
 }
 
 .container-fluid.header-ribbon {
@@ -713,11 +714,7 @@ button {
   font-size: 14px;
 }
 
-.revamp {
-  height: auto;
-  min-width: 450px;
-  max-width: 1000px;
-}
+
 
 .conten {
   margin-top: 30px;
@@ -731,7 +728,7 @@ button {
   border-radius: 8px;
   display: flex;
   align-items: center;
-  min-width: 450px;
+ 
 }
 
 .profie-pic {
@@ -784,8 +781,7 @@ button {
 }
 .africa {
   margin: 35px 0;
-  width: 70%;
-  min-width: 450px;
+
 }
 .ul {
   margin-left: 20px;
@@ -798,10 +794,7 @@ button {
   border-radius: 4px;
   margin-top: 60px;
 }
-.website {
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
+
 .font-diffrent {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif !important;
