@@ -216,7 +216,7 @@ br {
 
 .button-box a {
   position: relative;
-  display: inlineflex;
+  display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -312,6 +312,15 @@ br {
   margin-top: 50px;
   overflow: hidden;
   border-radius: 50px;
+}
+
+.second img,
+.second video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
 }
 /* .third{
     position: relative;
