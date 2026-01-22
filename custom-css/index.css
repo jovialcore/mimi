@@ -145,6 +145,7 @@ body {
 
 .width {
   padding-left: 40px;
+  padding-top: 30px;
 }
 
 /* .home-content max-width removed to allow container-fluid to work */
@@ -453,7 +454,7 @@ button {
   width: 100%;
   max-width: 350px;
   height: 500px;
-  margin-top: 50px;
+  margin-top: 0;
   margin-left: 0;
   margin-right: auto;
 }
