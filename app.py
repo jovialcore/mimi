@@ -85,9 +85,9 @@ def convert():
         
         # Quality settings
         quality_settings = {
-            'low': {'scale': min(width, 320), 'colors': 64},
-            'medium': {'scale': min(width, 480), 'colors': 128},
-            'high': {'scale': min(width, 640), 'colors': 256}
+            'low': {'scale': min(width, 360), 'colors': 96},
+            'medium': {'scale': min(width, 600), 'colors': 192},
+            'high': {'scale': min(width, 900), 'colors': 256}
         }
         settings = quality_settings.get(quality, quality_settings['medium'])
         
@@ -101,8 +101,9 @@ def convert():
         full_video_base = os.path.join(TEMP_DIR, f'{unique_id}_full')
         
         # Download video using yt-dlp Python library
+        # Prefer progressive MP4 formats (e.g. 720p itag 22, 360p itag 18) to avoid SABR/HLS fragment issues.
         ydl_opts = {
-            'format': 'bv*[height<=720]+ba/b[height<=720]/bv*+ba/b',
+            'format': '22/18/b[ext=mp4][height<=720]/best[ext=mp4]/best',
             'outtmpl': full_video_base + '.%(ext)s',
             'quiet': False,
             'no_warnings': False,
@@ -150,7 +151,7 @@ def convert():
         palette_cmd = [
             ffmpeg_path, '-y',
             '-i', video_file,
-            '-vf', f"fps={fps},scale={settings['scale']}:-1:flags=lanczos,palettegen=max_colors={settings['colors']}",
+            '-vf', f"fps={fps},scale={settings['scale']}:-1:flags=lanczos,palettegen=stats_mode=diff:max_colors={settings['colors']}",
             palette_file
         ]
         
@@ -164,7 +165,7 @@ def convert():
             ffmpeg_path, '-y',
             '-i', video_file,
             '-i', palette_file,
-            '-lavfi', f"fps={fps},scale={settings['scale']}:-1:flags=lanczos[x];[x][1:v]paletteuse=dither=bayer:bayer_scale=5",
+            '-lavfi', f"fps={fps},scale={settings['scale']}:-1:flags=lanczos[x];[x][1:v]paletteuse=dither=sierra2_4a:diff_mode=rectangle",
             gif_file
         ]
         
