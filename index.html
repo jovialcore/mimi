@@ -1,644 +1,828 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Miracle Onyinye Portfolio</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Miracle Onyinye — UI/UX Designer & Design Mentor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <!-- media query-->
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  :root {
+    --bg: #0e0e0e;
+    --surface: #161616;
+    --surface2: #1e1e1e;
+    --border: #2a2a2a;
+    --text: #e8e4dc;
+    --muted: #888;
+    --accent: #c8f169;
+    --accent2: #a8d44a;
+    --white: #ffffff;
+    --ff-display: 'Fraunces', Georgia, serif;
+    --ff-body: 'DM Sans', system-ui, sans-serif;
+  }
 
-  <!-- Boostrap csss-->
-  <link rel="stylesheet" href="css/bootstrap.min.css" />
-  <link rel="stylesheet" href="font/css/fontawesome.min.css" />
+  html { scroll-behavior: smooth; }
 
-  <!-- font awesome-->
-  <link href="font/css/fontawesome.css" rel="stylesheet" />
-  <link href="font/css/brands.css" rel="stylesheet" />
-  <link href="font/css/solid.css" rel="stylesheet" />
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--ff-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
 
-  <link href="custom-css/main.css" type="text/css" rel="stylesheet" />
+  a { color: inherit; text-decoration: none; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background: rgba(14,14,14,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--ff-display);
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-cta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: #0e0e0e;
+    font-size: 0.82rem;
+    font-weight: 500;
+    padding: 9px 18px;
+    border-radius: 100px;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--accent2); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 140px 40px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(200,241,105,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 28px; height: 1px;
+    background: var(--accent);
+  }
+
+  .hero-headline {
+    font-family: var(--ff-display);
+    font-size: clamp(2.4rem, 6vw, 5.2rem);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    max-width: 820px;
+    margin-bottom: 32px;
+    color: var(--white);
+  }
+  .hero-headline em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  .hero-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 40px;
+  }
+  .status-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.75); }
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: #0e0e0e;
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 14px 26px;
+    border-radius: 100px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--text);
+    font-size: 0.88rem;
+    font-weight: 400;
+    padding: 13px 26px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .btn-ghost:hover { border-color: var(--muted); transform: translateY(-1px); }
+
+  /* ─── SECTION SHARED ─── */
+  section { padding: 100px 40px; }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: var(--ff-display);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+
+  .section-body {
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 560px;
+    line-height: 1.75;
+  }
+
+  /* ─── WORKS ─── */
+  #works { background: var(--bg); }
+
+  .works-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .works-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2px;
+  }
+
+  .work-hidden { display: none !important; }
+  .works-grid.expanded .work-hidden { display: block !important; }
+
+  .works-more {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+  }
+
+  .work-card {
+    cursor: pointer;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+    border-radius: 4px;
+    transition: border-color 0.25s;
+  }
+  .work-card:hover { border-color: #444; }
+  .work-card:hover .work-img { transform: scale(1.03); }
+
+  .work-img-wrap {
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    background: var(--surface2);
+    position: relative;
+  }
+
+  .work-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .work-img-placeholder {
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1a1a1a 0%, #222 100%);
+    color: var(--muted);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .work-tag {
+    position: absolute;
+    top: 14px; left: 14px;
+    background: rgba(14,14,14,0.85);
+    backdrop-filter: blur(8px);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 5px 10px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+  }
+
+  .work-body {
+    padding: 24px 28px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+  }
+
+  .work-title {
+    font-family: var(--ff-display);
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+
+  .work-desc {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .work-link {
+    flex-shrink: 0;
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 1rem;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .work-link:hover {
+    background: var(--accent);
+    color: #0e0e0e;
+    border-color: var(--accent);
+  }
+
+  /* ─── CLIENTS ─── */
+  #clients {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 80px 40px;
+  }
+
+  .clients-intro {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .clients-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .client-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 0.83rem;
+    color: var(--muted);
+    background: var(--surface2);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .client-pill:hover { border-color: var(--accent); color: var(--text); }
+  .client-pill-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.6;
+  }
+
+  /* ─── ABOUT ─── */
+  #about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 40px;
+  }
+
+  .about-image-wrap {
+    position: relative;
+  }
+
+  .about-img-frame {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: var(--surface2);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+  }
+  .about-img-frame img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .about-badge {
+    position: absolute;
+    bottom: -20px; right: -20px;
+    background: var(--accent);
+    color: #0e0e0e;
+    padding: 16px 20px;
+    border-radius: 8px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1.3;
+    text-align: center;
+  }
+  .about-badge strong {
+    display: block;
+    font-size: 1.5rem;
+    font-family: var(--ff-display);
+    font-weight: 400;
+  }
+
+  .about-text p {
+    color: var(--muted);
+    font-size: 0.97rem;
+    line-height: 1.8;
+    margin-bottom: 18px;
+  }
+  .about-text em { font-style: italic; color: var(--text); }
+  .about-actions { margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap; }
+
+  /* ─── SOCIAL / FOOTER ─── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 60px 40px 40px;
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 48px;
+  }
+
+  .footer-brand .nav-logo { font-size: 1.25rem; margin-bottom: 14px; }
+  .footer-tagline { font-size: 0.84rem; color: var(--muted); max-width: 240px; line-height: 1.6; }
+
+  .footer-contact p { font-size: 0.82rem; color: var(--muted); margin-bottom: 6px; }
+  .footer-contact a { color: var(--text); font-size: 0.9rem; }
+  .footer-contact a:hover { color: var(--accent); }
+
+  .footer-nav ul { list-style: none; }
+  .footer-nav li { margin-bottom: 10px; }
+  .footer-nav a {
+    font-size: 0.84rem;
+    color: var(--muted);
+    transition: color 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .footer-nav a:hover { color: var(--text); }
+
+  .social-links { display: flex; gap: 10px; margin-top: 8px; }
+  .social-btn {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    color: var(--muted);
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .social-btn:hover { background: var(--accent); color: #0e0e0e; border-color: var(--accent); }
+
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-bottom p { font-size: 0.78rem; color: var(--muted); }
+
+  /* ─── SCROLL ANIMATIONS ─── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 120px 20px 60px; }
+    section { padding: 70px 20px; }
+    #about {
+      grid-template-columns: 1fr;
+      gap: 48px;
+      padding: 70px 20px;
+    }
+    .works-header { flex-direction: column; align-items: flex-start; }
+    .works-grid { grid-template-columns: 1fr; }
+    #clients { padding: 60px 20px; }
+    footer { padding: 48px 20px 32px; }
+    .footer-inner { flex-direction: column; }
+    .about-badge { bottom: -16px; right: -10px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
 </head>
-
 <body>
-  <nav class="navbar navbar-expand-lg fixed-top navigationbar" id="header">
-    <!-- Logo -->
-    <a class="navbar-brand logo" href="#">
-      Miracle Onyinye<br />UI/UX Designer & Design mentor
+
+<!-- ─── NAV ─── -->
+<nav>
+  <a class="nav-logo" href="#"><span>Miracle</span> Onyinye</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#works">Works</a></li>
+    <li><a href="#clients">Clients</a></li>
+    <li><a href="#about">Mentorship</a></li>
+  </ul>
+  <a class="nav-cta" href="mailto:miracleonyinye19@gmail.com">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    Let's Talk
+  </a>
+</nav>
+
+<!-- ─── HERO ─── -->
+<header class="hero">
+  <img src="https://miracleonyi.netlify.app/image/Screenshot_20251115-023950.png" alt="" aria-hidden="true" style="width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid #2a2a2a;margin-bottom:20px;" onerror="this.style.display='none'" />
+  <p class="hero-eyebrow">UI/UX Designer & Design Mentor</p>
+  <h1 class="hero-headline">
+    Crafting intuitive digital experiences for <em>start-ups</em> and global brands.
+  </h1>
+  <p class="hero-sub">
+    A generalist UI/UX designer building with AI, crafting design systems, and shipping user-centric products for startups and businesses worldwide.
+  </p>
+  <p class="hero-status">
+    <span class="status-dot"></span>
+    Currently designing for Tubira.ai — always open to chat and collaborate.
+  </p>
+  <div class="hero-actions">
+    <a class="btn-primary" href="mailto:miracleonyinye19@gmail.com">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Discuss your next idea
+    </a>
+    <a class="btn-ghost" href="#">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download Resume
+    </a>
+  </div>
+</header>
+
+<!-- ─── SELECTED WORKS ─── -->
+<section id="works">
+  <div class="works-header fade-up">
+    <div>
+      <p class="section-label">Selected Works</p>
+      <h2 class="section-title">Recent Projects</h2>
+    </div>
+    <a class="btn-ghost" href="#">View All on Behance ↗</a>
+  </div>
+
+  <div class="works-grid">
+
+    <!-- Card 1 — Tubira.ai -->
+    <a href="tubira-case-study.html" class="work-card fade-up" style="display:block;">
+      <div class="work-img-wrap">
+        <img class="work-img" src="image/tubira-banner.jpg" alt="Tubira.ai — Discover, Book, Experience, Pay Later" loading="lazy" style="object-position:top;" />
+        <span class="work-tag">Mobile · Web · 2025</span>
+      </div>
+      <div class="work-body">
+        <div>
+          <h3 class="work-title">Tubira.ai — Travel Booking</h3>
+          <p class="work-desc">All-in-one travel booking platform</p>
+        </div>
+        <span class="work-link" aria-hidden="true">↗</span>
+      </div>
     </a>
 
-    <!-- Hamburger Button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"><img src="image/images__1_-removebg-preview.png" alt="" style="
-              width: 100%;
-              height: 100%;
-              object-fit: cover;
-              object-position: center;
-            " />
-      </span>
-    </button>
+    <!-- Card 2 -->
+    <a href="altepay-case-study.html" class="work-card fade-up" style="display:block; transition-delay: 0.1s;">
+      <div class="work-img-wrap">
+        <img class="work-img" src="https://miracleonyi.netlify.app/image/altepay/image_three.png" alt="Altepay Admin Dashboard" loading="lazy" />
+        <span class="work-tag">Dashboard · 2024</span>
+      </div>
+      <div class="work-body">
+        <div>
+          <h3 class="work-title">Altepay — Admin Dashboard</h3>
+          <p class="work-desc">Product & Merchant Management System</p>
+        </div>
+        <span class="work-link" aria-hidden="true">↗</span>
+      </div>
+    </a>
 
-    <!-- Collapsing Navigation -->
-    <div class="collapse navbar-collapse justify-content-end mega" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link mega" href="#"><img src="image/Accessories/about_icon.png" alt="" /> About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link mega" href="#"><img src="image/Accessories/mentorship_icon.png" alt="" /> Mentorship</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link mega" href="#"><img src="image/Accessories/journal_icon.png" alt="" /> Journal</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link mega" href="#"><img src="image/Accessories/assets_icon.png" alt="" /> Assets</a>
-        </li>
-        <li class="border-right">
-          <a class="mega" href="#"></a>
-        </li>
+    <!-- Card 3 -->
+    <a href="https://miracleonyi.netlify.app/ichie-ict-crypto" target="_blank" rel="noopener" class="work-card fade-up" style="display:block; transition-delay: 0.2s;">
+      <div class="work-img-wrap">
+        <img class="work-img" src="https://miracleonyi.netlify.app/image/Unlock High-Yield Crypto.webp" alt="Ichie ICT Crypto Platform" loading="lazy" />
+        <span class="work-tag">Web · Crypto · 2025</span>
+      </div>
+      <div class="work-body">
+        <div>
+          <h3 class="work-title">Ichie ICT — Crypto Platform</h3>
+          <p class="work-desc">Crypto platform website for Ichie ICT</p>
+        </div>
+        <span class="work-link" aria-hidden="true">↗</span>
+      </div>
+    </a>
+
+    <!-- Card 4 -->
+    <a href="skit-store-case-study.html" class="work-card fade-up" style="display:block; transition-delay: 0.3s;">
+      <div class="work-img-wrap">
+        <img class="work-img" src="https://miracleonyi.netlify.app/image/Well deserved.png" alt="Skit Store Rewards & Loyalty App" loading="lazy" />
+        <span class="work-tag">Mobile · Loyalty · 2023</span>
+      </div>
+      <div class="work-body">
+        <div>
+          <h3 class="work-title">Skit Store — Rewards & Loyalty</h3>
+          <p class="work-desc">Rewards and loyalty app design</p>
+        </div>
+        <span class="work-link" aria-hidden="true">↗</span>
+      </div>
+    </a>
+
+    <!-- Card 5 — hidden until "See more" -->
+    <a href="altepay-case-study.html" class="work-card work-hidden fade-up" style="display:block;">
+      <div class="work-img-wrap">
+        <img class="work-img" src="https://miracleonyi.netlify.app/image/mainmain.gif" alt="Altepay Hero Preview" loading="lazy" />
+        <span class="work-tag">Fintech · Motion</span>
+      </div>
+      <div class="work-body">
+        <div>
+          <h3 class="work-title">Altepay — Hero & Branding</h3>
+          <p class="work-desc">Motion design & product landing experience</p>
+        </div>
+        <span class="work-link" aria-hidden="true">↗</span>
+      </div>
+    </a>
+
+    <!-- Card 6 — hidden until "See more" -->
+    <a href="dominate-case-study.html" class="work-card work-hidden fade-up" style="display:block; transition-delay: 0.1s;">
+      <div class="work-img-wrap">
+        <div class="work-img-placeholder">Dominate · Case Study</div>
+        <span class="work-tag">Mobile · Gaming · 2024</span>
+      </div>
+      <div class="work-body">
+        <div>
+          <h3 class="work-title">Dominate — Gaming Community</h3>
+          <p class="work-desc">Compete, connect &amp; earn platform</p>
+        </div>
+        <span class="work-link" aria-hidden="true">↗</span>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="works-more">
+    <button type="button" class="btn-ghost works-more-btn" id="worksMoreBtn" aria-expanded="false">See more projects ↓</button>
+  </div>
+</section>
+
+<!-- ─── CLIENTS ─── -->
+<section id="clients">
+  <div class="clients-intro fade-up">
+    <p class="section-label">Client Work</p>
+    <h2 class="section-title">Diverse clients, same unique result</h2>
+    <p class="section-body" style="margin: 12px auto 0; text-align: center; max-width: 440px;">
+      I have worked on the products of the following clients and counting…
+    </p>
+  </div>
+  <div class="clients-grid fade-up">
+    <span class="client-pill"><span class="client-pill-dot"></span>Kenya Society of Engineers</span>
+    <span class="client-pill"><span class="client-pill-dot"></span>Durdanta Tech Hub</span>
+    <span class="client-pill"><span class="client-pill-dot"></span>Ichie ICT</span>
+    <span class="client-pill"><span class="client-pill-dot"></span>Salesunbox</span>
+    <span class="client-pill"><span class="client-pill-dot"></span>Skit Store</span>
+    <span class="client-pill"><span class="client-pill-dot"></span>Bumima</span>
+    <span class="client-pill"><span class="client-pill-dot"></span>Altepay</span>
+    <span class="client-pill"><span class="client-pill-dot"></span>Young Professional Forum</span>
+    <span class="client-pill"><span class="client-pill-dot"></span>Dominate</span>
+    <span class="client-pill"><span class="client-pill-dot"></span>Lairgo Playground</span>
+    <span class="client-pill"><span class="client-pill-dot"></span>Auda</span>
+    <span class="client-pill"><span class="client-pill-dot"></span>Tubira.ai</span>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section id="about">
+    <div class="about-image-wrap fade-up">
+      <div class="about-img-frame">
+        <img src="https://miracleonyi.netlify.app/image/Screenshot_20251120-233511-removebg-preview-removebg-preview.png" alt="Miracle Onyinye" onerror="this.style.display='none'" />
+      </div>
+      <div class="about-badge">
+        <strong>4+</strong>
+        Years in<br>UI/UX Design
+      </div>
+    </div>
+
+    <div class="about-text fade-up" style="transition-delay: 0.15s;">
+      <p class="section-label">About Me</p>
+      <h2 class="section-title">A little bit about me</h2>
+      <p>Think of me as a designer who loves solving problems, learning new things, and turning ideas into experiences people actually enjoy using.</p>
+      <p>From designing my first interface out of pure curiosity to working on real-world digital products used across industries, I've always been driven by one question — <em>how can design make this better?</em></p>
+      <p>Over the years, I've worked with startups and global teams to build meaningful, user-centered products that balance beauty with functionality.</p>
+      <p>Whether it's crafting a design system, improving accessibility, or shaping a mobile app from concept to launch, I'm obsessed with details that make experiences feel natural.</p>
+      <p>When I'm not designing, you'll probably find me explaining design trends, mentoring other creatives, or refining my skills in front-end development and AI-assisted workflows.</p>
+      <p><em>Design, for me, isn't just work — it's how I explore the world.</em></p>
+      <div class="about-actions">
+        <a class="btn-primary" href="mailto:miracleonyinye19@gmail.com">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Discuss your next idea
+        </a>
+        <a class="btn-ghost" href="#">Download Resume</a>
+      </div>
+    </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="nav-logo"><span>Miracle</span> Onyinye</div>
+      <p class="footer-tagline">UI/UX Designer & Design Mentor building user-centric digital experiences worldwide.</p>
+      <div class="social-links" style="margin-top: 20px;">
+        <a class="social-btn" href="#" aria-label="X / Twitter">𝕏</a>
+        <a class="social-btn" href="#" aria-label="LinkedIn">in</a>
+        <a class="social-btn" href="#" aria-label="Instagram">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a class="social-btn" href="#" aria-label="TikTok">▶</a>
+        <a class="social-btn" href="#" aria-label="Pinterest">P</a>
+      </div>
+    </div>
+
+    <div class="footer-nav">
+      <p class="section-label" style="margin-bottom: 16px;">Navigation</p>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#works">Works</a></li>
+        <li><a href="#">Mentorship</a></li>
+        <li><a href="#">Journal</a></li>
+        <li><a href="#">Assets</a></li>
       </ul>
-      <div class="call">
-        <span class="nav-item">
-          <a class="find mega" href="#">Find me on:</a>
-        </span>
-
-        <span class="nav-item">
-          <a href="" class="back mega"><img src="image/Accessories/x_icon.png" alt="" /></a>
-        </span>
-        <span class="nav-item">
-          <a href="" class="back mega"><img src="image/Accessories/linkedin_icon.png" alt="" /></a>
-        </span>
-        <span class="nav-item">
-          <a href="" class="back mega"><img src="image/Accessories/instagram_icon.png" alt="" /></a>
-        </span>
-        <span class="nav-item">
-          <a href="" class="back mega"><img src="image/Accessories/tiktok_icon.png" alt="" /></a>
-        </span>
-        <span class="nav-item">
-          <a href="" class="back mega"><img src="image/Accessories/pinterest_icon.png" alt="" /></a>
-        </span>
-      </div>
-    </div>
-  </nav>
-  <div class="content">
-
-    <div class="row">
-      <div class="col-12">
-        <div class="home-content" data-aos="fade-up" data-aos-delay="100">
-          <div class="profile-pic" data-aos="zoom-in" data-aos-delay="200">
-            <img src="image/Screenshot_20251115-023950.png" width="65px" height="65px" />
-          </div>
-
-          <h1>
-            I'm a UI/UX Designer with 4 years creating intuitive digital
-            experiences for start-ups and global brands.
-          </h1>
-          <p class="info">I'M ALSO <span class="typed"></span></p>
-          <div>
-            <p></p>
-            <img src="image/figma (1).png" class="" /> A generalist UI/UX
-            Designer building with AI, crafting design systems,<br />
-            and shipping user-centric products for startups and businesses
-            worldwide. <br />
-            <img src="image/office (2).png" /> Currently designing for Tubira.ai
-            <a href="" class="text">—always open to chat and collaborate.</a>
-            </p>
-          </div>
-        </div>
-        <div class="button-box">
-          <a class="btn btn-primary" href=""><img src="image/bubble-chat.png" class="chat " /> Discuss your next
-            idea</a>
-          <a href="resume/Miracle Onyinye UI_UX Resume.pdf" class="btn btn-primary w-100" download><ion-icon
-              name="cloud-download-outline" class="icon"> </ion-icon>
-            Download resume
-          </a>
-        </div>
-
-        <div class="selected-work">
-          <!-- <img src="image/status.png" class="img" />Selected Works -->
-        </div>
-        <div class="folder" data-aos="fade-up">
-          <div class="first"></div>
-          <div class="second">
-
-            <img src="image/mainmain.gif" alt="Ichie ICT, Crypto Platform preview" loading="lazy">
-
-          </div>
-          <div class="write-up">
-            <div class="textbody">
-              <text class="top">Altepay — Admin Dashboard, Product & Merchant Management System (2024)</text>
-              <p class="bottom">
-                Landing page website revamp for Kenya Society of Engineers
-              </p>
-            </div>
-            <a href="altepay.html" class="btn btn-secondary btn-sm text:" style="height: fit-content">View</a>
-          </div>
-        </div>
-
-        <div class="folder" data-aos="fade-up">
-          <a href="ichie-ict-crypto.html">
-            <div class="first"></div>
-            <div class="second">
-
-              <img src="image/GIFs/ichie.gif" alt="Ichie ICT, Crypto Platform preview" loading="lazy">
-
-            </div>
-          </a>
-          <div class="write-up">
-            <div class="textbody">
-              <text class="top">Ichie ICT, Crypto Platform</text>
-              <p class="bottom">Crypto Platform Website for Ichie ICT </p>
-            </div>
-            <a href="ichie-ict-crypto.html" class="btn btn-secondary btn-sm text:" style="height: fit-content">View</a>
-          </div>
-
-        </div>
-
-
-
-        <div class="folder" data-aos="fade-up">
-          <div class="first"></div>
-          <div class="second"></div>
-          <div class="write-up">
-            <div class="textbody">
-              <text class="top">Skit Store, Rewards &amp; Loyalty App</text>
-              <p class="bottom">
-                Landing page website revamp for Kenya Society of Engineers
-              </p>
-            </div>
-            <a href="skit-and-royalty-app.html" class="btn btn-secondary btn-sm text:"
-              style="height: fit-content">View</a>
-          </div>
-        </div>
-      </div>
     </div>
 
-
-    <div class="row">
-      <div class="col-12">
-        <div class="down">
-          <div class="button-box">
-            <a href=""><img src="image/bubble-chat.png" class="chat" />View More</a>
-            <a href=""><ion-icon name="cloud-download-outline" class="icon"></ion-icon>Visit Behance</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="row">
-      <div class="col-12">
-        <div class="selected-work">
-          <img src="image/Screenshot_20251122-152135-removebg-preview.png" class="im" width="30px"
-            height="30px" />Diverse
-          clients, same unique result
-        </div>
-        <p>
-          I have worked on the product of the following clients and counting...
-        </p>
-        <div class="sites" data-aos="fade-up" data-aos-delay="150">
-          <a href="link.html" class="list">
-            <img src="image/image-1.png" alt="" width="50px" height="20px" class="img-list" />
-            Kenya Society of Engineers
-          </a>
-          <a href="" class="list">
-            <img src="image/images.png" alt="" width="50px" height="20px" class="img-list" />
-            Durdanta Tech Hub
-          </a>
-          <a href="" class="list">
-            <img src="image/Ichie-ICT-Web-logo-white.jpg" alt="" width="20px" height="20px" class="img-list" />
-            Ichie ICT
-          </a>
-          <a href="" class="list">
-            <img src="image/download.jpg" alt="" width="20px" height="20px" class="img-list" />
-            Salesunbox
-          </a>
-          <a href="" class="list">
-            <img src="image/images (1).jpeg" alt="" width="20px" height="20px" class="img-list" />
-            Skit store
-          </a>
-          <a href="" class="list">
-            <img src="image/Screenshot_20251120-233343.jpg" alt="" width="20px" height="20px" class="img-list" />
-            Bumima
-          </a>
-          <a href="" class="list">
-            <img src="image/Screenshot_20251120-233339.jpg" alt="" width="20px" height="20px" class="img-list" />
-            Altpay
-          </a>
-          <a href="" class="list">
-            <img src="image/Screenshot_20251120-233330.jpg" alt="" width="20px" height="20px" class="img-list" />
-            Young Professional Forum
-          </a>
-          <a href="" class="list">
-            <img src="image/Screenshot_20251120-233358.jpg" alt="" height="20px" class="img-list" />
-            Dominate
-          </a>
-          <a href="" class="list">
-            <img src="image/Screenshot_20251120-233402.jpg" alt="" width="20px" height="20px" class="img-list" />
-            Lairgo Playground
-          </a>
-          <a href="" class="list">
-            <img src="" alt="" height="20px" />
-            Auda
-          </a>
-          <a href="" class="list">
-            <img src="image/Screenshot_20251120-233409.jpg" alt="" width="20px" height="20px" class="img-list" />
-            Tubira
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-12">
-        <div class="last">
-          <div class="aboutme">
-            <ion-icon name="person-outline" class="icon"></ion-icon>About me
-          </div>
-          <p>A little bit about me</p>
-          <div class="cont">
-            <img src="" alt="" />
-            <div class="about"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-lg-4 col-md-12 col-sm-12">
-        <div class="containe" data-aos="zoom-in" data-aos-duration="1200">
-          <div class="dots-top-left">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-          </div>
-          <div class="circle-bg"></div>
-
-          <img src="image/Screenshot_20251120-233511-removebg-preview-removebg-preview.png" alt="Profile"
-            class="profile-img" />
-
-          <div class="dots-bottom-right">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-12 col-md-12 col-lg-8 width" data-aos="fade-left">
-        <div class="weight">
-          Think of me as a designer who loves solving problems, learning new
-          things, and turning ideas into experiences people actually enjoy
-          using.
-        </div>
-        <div class="write">
-          From designing my first interface out of pure curiosity to working
-          on real-world digital products used across industries, I've always
-          been driven by one question —<text class="text"><i> how can design make this better?</i></text>
-        </div>
-        <div class="write">
-          Over the years, I've worked with startups and global teams to build
-          meaningful, user-centered products that balance beauty with
-          functionality.
-        </div>
-        <div class="write">
-          Whether it's crafting a design system, improving accessibility, or
-          shaping a mobile app from concept to launch, I'm obsessed with
-          details that make experiences feel natural.
-        </div>
-        <div class="write">
-          When I'm not designing, you'll probably find me explaining design
-          trends, mentoring other creatives, or refining my skills in
-          front-end development and AI-assisted workflows.
-        </div>
-        <div class="write text">
-          <i>Design, for me, isn't just work - it's how I explore the world</i>
-        </div>
-        <div class="button-box write">
-
-          <a href="" class="btn btn-primary"><img src="image/bubble-chat.png" class="chat" /> Discuss your
-            next idea</a>
-          <a class="btn btn-primary w-100" href=""><ion-icon name="cloud-download-outline"
-              class="icon"></ion-icon>Download resume </a>
-        </div>
-      </div>
+    <div class="footer-contact">
+      <p class="section-label" style="margin-bottom: 16px;">Contact Me</p>
+      <p>Phone</p>
+      <a href="tel:+2348163503615">+234 816 350 3615</a>
+      <p style="margin-top: 16px;">Email</p>
+      <a href="mailto:miracleonyinye19@gmail.com">miracleonyinye19@gmail.com</a>
     </div>
   </div>
 
-  <footer class="footer" data-aos="fade-up" data-aos-duration="1000">
-    <div class="footer-container">
-      <div class="footer-left">
-        <a class="navbar-brand logo" href="#">
-          Miracle Onyinye<br />UI/UX Designer & Design mentor
-        </a>
+  <div class="footer-bottom">
+    <p>@2025 — Miracle Onyinye. All rights reserved.</p>
+    <a class="btn-primary" href="mailto:miracleonyinye19@gmail.com" style="font-size: 0.8rem; padding: 10px 20px;">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Let's Talk
+    </a>
+  </div>
+</footer>
 
-        <a class="talk-btn">
-          <img src="image/bubble-chat.png" class="chat" /> Let's Talk
-        </a>
-
-        <p class="copyright">@2025 - copyright</p>
-      </div>
-
-      <div class="footer-right">
-        <ul class="footer-links">
-          <li class="nav-item">
-            <a class="nav-link footer-nav-mega" href="#"><ion-icon name="person-outline"
-                class="icon"></ion-icon>About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link footer-nav-mega" href="#"><ion-icon name="people-outline"
-                class="icon"></ion-icon>Mentorship</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link footer-nav-mega" href="#"><ion-icon name="journal-outline"
-                class="icon"></ion-icon>Journal</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link footer-nav-mega" href="#"><ion-icon name="business-outline"
-                class="icon"></ion-icon>Assets</a>
-          </li>
-        </ul>
-
-        <div class="cal">
-          <span class="nav-item">
-            <a class="find mega" href="#">Find me on:</a>
-          </span>
-
-          <span class="nav-item">
-            <a href="" class="back mega"><img src="image/Accessories/x_icon.png" alt="" /></a>
-          </span>
-          <span class="nav-item">
-            <a href="" class="back mega"><img src="image/Accessories/linkedin_icon.png" alt="" /></a>
-          </span>
-          <span class="nav-item">
-            <a href="" class="back mega"><img src="image/Accessories/instagram_icon.png" alt="" /></a>
-          </span>
-          <span class="nav-item">
-            <a href="" class="back mega"><img src="image/Accessories/tiktok_icon.png" alt="" /></a>
-          </span>
-          <span class="nav-item">
-            <a href="" class="back mega"><img src="image/Accessories/pinterest_icon.png" alt="" /></a>
-          </span>
-        </div>
-
-        <div class="contact-block">
-          <text class="label">CONTACT ME</text><br />
-          <text class="value">+234 816 350 3615</text><br />
-          <text class="label">EMAIL ME</text><br />
-          <text class="value">MIRACLEONYINYE19@GMAIL.COM</text>
-        </div>
-      </div>
-      <button class="scroll-top" onclick="scrollToTop()">
-        <text>></text>
-      </button>
-    </div>
-  </footer>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-  <!-- jQuery library -->
-  <script src="js/jquery.min.js"></script>
-  <!-- Popper JS -->
-  <script src="js/popper.min.js"></script>
-  <!-- Latest compiled JavaScript -->
-  <script src="js/bootstrap.min.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-  <script>
-    AOS.init({
-      once: true,
-      mirror: false,
-      duration: 900,
+<script>
+  // Scroll-triggered fade-up
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
     });
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-  <script type="text/javascript" src="index.js"></script>
-</body>
+  }, { threshold: 0.12 });
 
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Works "See more" toggle
+  const worksMoreBtn = document.getElementById('worksMoreBtn');
+  if (worksMoreBtn) {
+    const worksGrid = document.querySelector('.works-grid');
+    worksMoreBtn.addEventListener('click', () => {
+      const expanded = worksGrid.classList.toggle('expanded');
+      worksMoreBtn.setAttribute('aria-expanded', String(expanded));
+      worksMoreBtn.textContent = expanded ? 'Show less ↑' : 'See more projects ↓';
+      worksGrid.querySelectorAll('.work-hidden').forEach(el => el.classList.add('visible'));
+    });
+  }
+</script>
+</body>
 </html>
