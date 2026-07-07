@@ -107,6 +107,28 @@ section{padding:80px 0;border-top:1px solid var(--border);}
   .cta-section{padding:36px 20px;}
   .btn-ghost{margin-left:0;margin-top:10px;}
 }
+
+  /* ─── FOOTER ─── */
+  footer{border-top:1px solid var(--border);padding:60px 40px 40px;}
+  .footer-inner{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:40px;margin-bottom:48px;}
+  .footer-brand .nav-logo{font-size:1.25rem;margin-bottom:14px;}
+  .footer-tagline{font-size:.84rem;color:var(--muted);max-width:240px;line-height:1.6;}
+  .footer-contact p{font-size:.82rem;color:var(--muted);margin-bottom:6px;}
+  .footer-contact a{color:var(--text);font-size:.9rem;}
+  .footer-contact a:hover{color:var(--accent);}
+  .footer-nav ul{list-style:none;}
+  .footer-nav li{margin-bottom:10px;}
+  .footer-nav a{font-size:.84rem;color:var(--muted);transition:color .2s;text-transform:uppercase;letter-spacing:.06em;}
+  .footer-nav a:hover{color:var(--text);}
+  .social-links{display:flex;gap:10px;margin-top:8px;}
+  .social-btn{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.85rem;color:var(--muted);transition:background .2s,color .2s,border-color .2s;}
+  .social-btn:hover{background:var(--accent);color:#0e0e0e;border-color:var(--accent);}
+  .footer-bottom{border-top:1px solid var(--border);padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  .footer-bottom p{font-size:.78rem;color:var(--muted);}
+  @media(max-width:768px){
+    footer{padding:48px 20px 32px;}
+    .footer-inner{flex-direction:column;}
+  }
 </style>
 </head>
 <body>
@@ -373,6 +395,51 @@ section{padding:80px 0;border-top:1px solid var(--border);}
     <a class="btn-ghost" href="index.html">Back to Portfolio</a>
   </div>
 </div>
+
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="nav-logo"><span>Miracle</span> Onyinye</div>
+      <p class="footer-tagline">UI/UX Designer &amp; Design Mentor building user-centric digital experiences worldwide.</p>
+      <div class="social-links" style="margin-top: 20px;">
+        <a class="social-btn" href="https://x.com/healthywealthi" target="_blank" rel="noopener" aria-label="X / Twitter">𝕏</a>
+        <a class="social-btn" href="https://www.linkedin.com/in/miracle-onyinye-95919417b?utm_source=share&utm" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+        <a class="social-btn" href="https://www.instagram.com/miracleonyinyebasil?igsh=bHFscW1nOHB2NWp1" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-nav">
+      <p class="section-label" style="margin-bottom: 16px;">Navigation</p>
+      <ul>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#works">Works</a></li>
+        <li><a href="#">Mentorship</a></li>
+        <li><a href="#">Journal</a></li>
+        <li><a href="#">Assets</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-contact">
+      <p class="section-label" style="margin-bottom: 16px;">Contact Me</p>
+      <p>Phone</p>
+      <a href="tel:+2348163503615">+234 816 350 3615</a>
+      <p style="margin-top: 16px;">Email</p>
+      <a href="mailto:miracleonyinye19@gmail.com">miracleonyinye19@gmail.com</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>@2025 — Miracle Onyinye. All rights reserved.</p>
+    <a class="btn-primary" href="mailto:miracleonyinye19@gmail.com" style="font-size: 0.8rem; padding: 10px 20px;">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Let's Talk
+    </a>
+  </div>
+</footer>
 
 <script>
 const obs=new IntersectionObserver((e)=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');obs.unobserve(el.target);}})},{threshold:0.08});
